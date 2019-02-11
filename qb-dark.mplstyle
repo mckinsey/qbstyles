@@ -1,0 +1,22 @@
+### FONT
+text.color : white
+
+### AXES
+axes.facecolor      : FFFFFF07   # axes background color
+axes.edgecolor      : FFFFFF3D   # axes edge color
+axes.labelcolor     : FFFFFFD9
+
+### TICKS
+xtick.color          : FFFFFFD9      # color of the tick labels
+ytick.color          : FFFFFFD9      # color of the tick labels
+
+### GRIDS
+grid.color       :   FFFFFF   # grid color
+
+### Legend
+legend.facecolor     : inherit   # legend background color (when 'inherit' uses axes.facecolor)
+legend.edgecolor : FFFFFFD9 # legend edge color (when 'inherit' uses axes.edgecolor)
+
+### FIGURE
+#TODO: notebook ignores this
+figure.facecolor : 0C1C23    # figure facecolor; 0.75 is scalar gray

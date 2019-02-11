@@ -1,0 +1,22 @@
+### FONT
+text.color : black
+
+### AXES
+axes.facecolor      : 00000007   # axes background color
+axes.edgecolor      : 0000003D   # axes edge color
+axes.labelcolor     : 000000D9
+
+### TICKS
+xtick.color          : 000000D9      # color of the tick labels
+ytick.color          : 000000D9      # color of the tick labels
+
+### GRIDS
+grid.color       :   000000   # grid color
+
+### Legend
+legend.facecolor     : FFFFFFD9   # legend background color (when 'inherit' uses axes.facecolor)
+legend.edgecolor : 000000D9 # legend edge color (when 'inherit' uses axes.edgecolor)
+
+### FIGURE
+#figure.facecolor : 0.75    # figure facecolor; 0.75 is scalar gray
+figure.facecolor: FFFFFF
