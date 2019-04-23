@@ -5,7 +5,7 @@
 [![PyPI version](https://badge.fury.io/py/qbstyles.svg)](https://pypi.org/project/qbstyles/)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-black.svg)](https://github.com/ambv/black)
 
-QB Styles is a set of visualisation themes that you can apply to your Matplotlib plots. It gives users access to standard plot elements (color, marker style, line style and font) for a series of plots on light and dark backgrounds. 
+QB Styles is a python package with a light and a dark [`matplotlib`](https://github.com/matplotlib/matplotlib) style.
 
 Dark style | Light style
 |-----------|----------- |
@@ -40,7 +40,7 @@ mpl_style(dark=False)
 
 ### How do I use QB Styles in Jupyter Notebooks?
 
-> _Warning_: Please make sure you run `from qbstyles import mpl_style` and `mpl_style()` in **different cells** as shown below. See [this issue](https://github.com/jupyter/notebook/issues/3691) for more details.
+> ⚠️ Please make sure you run `from qbstyles import mpl_style` and `mpl_style()` in **different cells** as shown below. See [this issue](https://github.com/jupyter/notebook/issues/3691) for more details.
 
 ```python
 # first cell
