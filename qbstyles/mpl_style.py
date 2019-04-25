@@ -11,7 +11,10 @@
 # secret or copyright law. Dissemination of this information or
 # reproduction of this material is strictly forbidden unless prior written
 # permission is obtained from QuantumBlack Visual Analytics Ltd.
+
 """
+This module contains the ``mpl_style`` function which applies the QB ``matplotlib`` theme
+
 Some of the tick properties cannot be set using ``plt.style.use``,
 so we have to set them in code.
 
@@ -23,20 +26,25 @@ then create a figure (using either ``plt.figure`` or ``plt.Figure`` or
 """
 import matplotlib.pyplot as plt
 import matplotlib.axes
+from os.path import realpath, join, pardir
 
 
-COMMON_STYLE = './qb-common.mplstyle'
-DARK_STYLE = './qb-dark.mplstyle'
-LIGHT_STYLE = './qb-light.mplstyle'
+STYLE_DIR = realpath(join(realpath(__file__), pardir, "styles"))
+COMMON_STYLE = "qb-common.mplstyle"
+DARK_STYLE = "qb-dark.mplstyle"
+LIGHT_STYLE = "qb-light.mplstyle"
 
 
-def qb_style(dark=True):
+__all__ = ["mpl_style"]
+
+
+def mpl_style(dark: bool = True, minor_ticks: bool = True):
     """Some of the tick properties cannot be set using ``plt.style.use``.
     Use this function as follows, to set them together with all other style
     properties:
 
     ::
-        >>> from qb import qb_style
+        >>> from qbstyles import mpl_style
         >>> import numpy as np
         >>>
         >>> #create some data
@@ -45,44 +53,55 @@ def qb_style(dark=True):
         >>> y = np.cumsum(rng.randn(500, 4), 0)
         >>>
         >>> # plot
-        >>> qb_style(dark=True)
+        >>> mpl_style(dark=True)
         >>> plt.plot(x, y)
 
     Args:
-        dark (bool)     : Use the dark or light style (default: True)
-    """
-    plt.style.use([COMMON_STYLE, DARK_STYLE if dark else LIGHT_STYLE])
-    color = 'FFFFFF' if dark else '000000'
+        dark : Use the dark or light style (default: True)
+        minor_ticks: Style the minor ticks (requires monkey patching)(default: True)
 
-    plt.subplots = _monkey_patch_subplot(color, plt.subplots)
-    plt.Figure = _monkey_patch_figure(color, plt.Figure)
+    """
+    plt.style.use(
+        join(STYLE_DIR, style)
+        for style in [COMMON_STYLE, DARK_STYLE if dark else LIGHT_STYLE]
+    )
+    color = "FFFFFF" if dark else "000000"
+
+    if minor_ticks:
+        plt.subplots = _monkey_patch_subplot(color, plt.subplots)
+        plt.Figure = _monkey_patch_figure(color, plt.Figure)
 
 
 def _style_ticks(axis, color):
     """ Enable minor ticks, and color major + minor ticks"""
     axis.minorticks_on()
-    ticks = (axis.get_xticklines() +
-             axis.xaxis.get_minorticklines() +
-             axis.get_yticklines() +
-             axis.yaxis.get_minorticklines())
+    ticks = (
+        axis.get_xticklines()
+        + axis.xaxis.get_minorticklines()
+        + axis.get_yticklines()
+        + axis.yaxis.get_minorticklines()
+    )
 
     for tick in ticks:
-        tick.set_color('#' + color + '3D')
+        tick.set_color("#" + color + "3D")
 
 
 def _monkey_patch_figure(color, Figure):
     """ Style a figure's current axis tick marks, just after the figure is
     created. """
+
     def _patch(*args, **kwargs):
         fig = Figure(*args, **kwargs)
         _style_ticks(fig.gca, color)
         return fig
+
     return _patch
 
 
 def _monkey_patch_subplot(color, subplot):
     """ Style all axes of a figure containing subplots, just after the
     figure is created. """
+
     def _patch(*args, **kwargs):
         fig, axes = subplot(*args, **kwargs)
         axes_list = [axes] if isinstance(axes, matplotlib.axes.Axes) else axes
@@ -93,4 +112,5 @@ def _monkey_patch_subplot(color, subplot):
                 for each in ax:
                     _style_ticks(each, color)
         return fig, axes
+
     return _patch

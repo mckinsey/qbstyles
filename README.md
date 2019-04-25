@@ -1,9 +1,58 @@
-# QB Matplotlib Styles
+# QB Styles
 
-QB matplotlib dark/light styles.
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python Version](https://img.shields.io/pypi/pyversions/qbstyles.svg)](https://pypi.org/project/qbstyles/)
+[![PyPI version](https://badge.fury.io/py/qbstyles.svg)](https://pypi.org/project/qbstyles/)
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-black.svg)](https://github.com/ambv/black)
 
-## Supported Chart Types
-This theme has been tested on the following chart types:
+QB Styles is a python package with a light and a dark [`matplotlib`](https://github.com/matplotlib/matplotlib) style.
+
+Dark style | Light style
+|-----------|----------- |
+| ![Line plot](examples/line.png?raw=true "Line plot") | ![Distribution plot](examples/distribution_light.png?raw=true "Distribution plot") |
+
+## How do I install QB Styles?
+
+`qbstyles` is a Python package. To install it, simply run:
+
+
+```bash
+pip install qbstyles
+```
+
+## How do I use QB Styles?
+
+You can use the dark Matplotlib style theme in the following way:
+
+```python
+from qbstyles import mpl_style
+
+mpl_style(dark=True)
+```
+
+And to use the light Matplotlib style theme, you can do the following: 
+
+```python
+from qbstyles import mpl_style
+
+mpl_style(dark=False)
+```
+
+### How do I use QB Styles in Jupyter Notebooks?
+
+> ⚠️ Please make sure you run `from qbstyles import mpl_style` and `mpl_style()` in **different cells** as shown below. See [this issue](https://github.com/jupyter/notebook/issues/3691) for more details.
+
+```python
+# first cell
+from qbstyles import mpl_style
+```
+```python
+# second cell
+mpl_style()
+```
+
+## What chart types can use QB Styles?
+
 - Line plots
 - Scatter plots
 - Bubble plots
@@ -14,179 +63,52 @@ This theme has been tested on the following chart types:
 - Stream plots
 - Polar plots
 
-## Usage
+## Can you show me a few examples?
 
-#### No minor tickmarks
-
-##### Global installation
-Run the following in `bash`:
-```bash
-# clone this repository
-git clone git@github.com:quantumblacklabs/qb-styles.git
-cd qb-styles
-# run installation script
-bash global-install.sh
-```
-Add the following at the top of your file:
-```python
-import matplotlib.pyplot as plt
-plt.style.use(['qb-common', 'qb-dark'])
-```
-
-##### Project specific installation
-1. Copy the files `qb-dark.mplstyle`, `qb-light.mplstyle` and `qb-common.mplstyle` in your project
-2. Add the following at the top of your file:
+To run the examples in [`example.ipynb`](example.ipynb), install the required packages using ``pip install -r requirements_notebook.txt`` in a Python virtual environment of your choice.
 
 ```python
 import matplotlib.pyplot as plt
-plt.style.use(['./qb-common.mplstyle', './qb-dark.mplstyle'])
+from qbstyles import mpl_style
+
+def plot(dark):
+    mpl_style(dark)
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    
+    # the following functions are defined in example.ipynb 
+    line_plot(axes[0, 0])
+    scatter_plot(axes[0, 1])
+    distribution_plot(axes[1, 0])
+    ax = plt.subplot(2, 2, 4, projection='polar')
+    polar_plot(ax)
+
+plot(dark=True)
 ```
-
-#### With minor tickmarks
-1. Copy the files `qb.py`, `qb-dark.mplstyle`, `qb-light.mplstyle` and `qb-common.mplstyle` in your project
-2. Make sure that `qb.py` is in your python path
-3. Add the following at the top of your file:
-
-```python
-from qb import qb_style
-qb_style(dark=True)
-```
-
-## Examples
-
-To run the examples in `example.ipynb`, please first install the required packages using ``pip install -r requirements.txt`` in a python virtual environment of your choice.
-
-
-### Import libraries
-
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
-from math import sin, pi
-import warnings
-
-from qb import qb_style
-```
-
-### Choose between interactive or static plots:
-
-
-```python
-# interactive plots:
-# %matplotlib notebook
-
-# static plots:
-%matplotlib inline
-```
-
-### Use QB's style:
-
-
-```python
-qb_style(dark=True)
-fig, axes = plt.subplots(2, 2, figsize=(15, 10))
-
-# scroll up for the definition of these functions
-line_plot(axes[0, 0])
-scatter_plot(axes[0, 1])
-distribution_plot(axes[1, 0])
-ax = plt.subplot(2, 2, 4, projection='polar')
-polar_plot(ax)
-plt.tight_layout()
-
-```
-
 
 ![png](examples/output_6_0.png?raw=true)
 
-
 ```python
-qb_style(dark=False)
-fig, axes = plt.subplots(2, 2, figsize=(15, 10))
-
-# scroll up for the definition of these functions
-line_plot(axes[0, 0])
-scatter_plot(axes[0, 1])
-distribution_plot(axes[1, 0])
-ax = plt.subplot(2, 2, 4, projection='polar')
-polar_plot(ax)
-plt.tight_layout()
+plot(dark=False)
 ```
-
 
 ![png](examples/output_7_0.png?raw=true)
 
+## How do I create my own styles? 
 
-### Test plot definitions:
+Have a look at the files [qb-common.mplstyle](qbstyles/styles/qb-common.mplstyle), [qb-dark.mplstyle](qbstyles/styles/qb-dark.mplstyle) and [qb-common.mplstyle](qbstyles/styles/qb-light.mplstyle). They contain many elements that you may want to customise.
 
+To do so, create a file similar to the above files at the root of you project, and apply it after the `qbstyle` as follows:
 
 ```python
-# LINE PLOT
-def line_plot(ax):
-    rng = np.random.RandomState(4)
-    x = np.linspace(0, 10, 500)
-    y = np.cumsum(rng.randn(500, 4), 0)
-    ax.set_title('Line Graph')
-    ax.set_xlabel('— Time')
-    ax.set_ylabel('— Random values')
-    ax.legend(['Bitcoin', 'Ethereum', 'Dollar', 'Oil'])
-    ax.set_xlim([0, 10])
-    ax.set_ylim([-20, 60])
-    ax.plot(x, y)
+import matplotlib.pyplot as plt
+from qbstyles import mpl_style
 
-# SCATTER PLOT
-def scatter_plot(ax):
-    rng = np.random.RandomState(4)
-    x = np.linspace(0.6, pi-0.6, 100)
-    y = [sin(x) + rng.rand() - 0.5 for x in x]
-    t = np.linspace(-1, pi+0.2, 300)
-    z = [0.5*sin(x*5) + rng.rand() - 0.5 for x in t]
-    ax.set_title('Scatter plot')
-    ax.set_xlabel('— space')
-    ax.set_ylabel('— altitude')
-    ax.legend(['sun', 'mountain'])
-    plt.xlim([-0.2, pi+0.2])
-    plt.ylim([-1.6, 1.6])
-    ax.scatter(x, y, s=100, alpha=.6)
-    ax.scatter(t, z, s=100, alpha=.6, marker='^')
-
-# DISTRIBUTIONS
-def distribution_plot(ax):
-    np.random.seed(2)
-    data = np.random.multivariate_normal((0, 0), [(5, 2), (2, 2)], size=2000)
-    data[:, 1] = np.add(data[:, 1], 2)
-    ax.set_title('Distribution Plot')
-    ax.set_xlabel('— Density')
-    ax.set_ylabel('— Random values')
-    ax.set_xlim([-10, 10])
-    ax.set_ylim([0, 0.31])
-    
-    # supress seaborn FutureWarnings
-    warnings.simplefilter(action='ignore', category=(FutureWarning, UserWarning))
-    for col in range(2):
-        sns.distplot(data[:, col], ax=ax)
-
-# POLAR PLOT
-def polar_plot(ax):
-    r = np.arange(0, 3.0, 0.01)
-    theta = 2 * pi * r
-    ax.plot(theta, r)
-    ax.plot(0.5 * theta, r, ls='--')
-    ax.set_title("Polar Axis Plot")
+mpl_style()
+plt.style.use('./your-style.mplstyle')
 ```
 
+All of `matplotlibrc`'s options can be found [here](https://matplotlib.org/tutorials/introductory/customizing.html#a-sample-matplotlibrc-file).
 
-### Dark Theme
+## What licence do you use?
 
-![Line plot](examples/line.png?raw=true "Line plot")
-![Scatter plot](examples/scatter.png?raw=true "Scatter plot")
-![Distribution plot](examples/distribution.png?raw=true "Distribution plot")
-![Polar plot](examples/polar.png?raw=true "Polar plot")
-
-### Light theme
-
-![Line plot](examples/line_light.png?raw=true "Line plot")
-![Scatter plot](examples/scatter_light.png?raw=true "Scatter plot")
-![Distribution plot](examples/distribution_light.png?raw=true "Distribution plot")
-![Polar plot](examples/polar_light.png?raw=true "Polar plot")
+QB Styles is licensed under the [Apache 2.0 License](LICENSE).
