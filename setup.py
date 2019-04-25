@@ -37,6 +37,7 @@ setup(
     version=version,
     description="QB styles for common plotting libraries",
     long_description=readme,
+    long_description_content_type='text/markdown',
     url="https://github.com/quantumblacklabs/qbstyles",
     author="QuantumBlack Labs",
     author_email="opensource@quantumblack.com",
