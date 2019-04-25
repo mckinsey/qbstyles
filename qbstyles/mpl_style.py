@@ -26,10 +26,9 @@ then create a figure (using either ``plt.figure`` or ``plt.Figure`` or
 """
 import matplotlib.pyplot as plt
 import matplotlib.axes
-from os.path import realpath, join, pardir
+from os.path import join, dirname, realpath
 
-
-STYLE_DIR = realpath(join(realpath(__file__), pardir, "styles"))
+STYLE_DIR = realpath(join(dirname(__file__), "styles"))
 COMMON_STYLE = "qb-common.mplstyle"
 DARK_STYLE = "qb-dark.mplstyle"
 LIGHT_STYLE = "qb-light.mplstyle"
