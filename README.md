@@ -9,7 +9,7 @@ QB Styles is a python package with a light and a dark [`matplotlib`](https://git
 
 Dark style | Light style
 |-----------|----------- |
-| ![Line plot](examples/line.png?raw=true "Line plot") | ![Distribution plot](examples/distribution_light.png?raw=true "Distribution plot") |
+| ![Line plot](https://github.com/quantumblacklabs/qbstyles/raw/master/examples/line.png?raw=true "Line plot") | ![Distribution plot](https://github.com/quantumblacklabs/qbstyles/raw/master/examples/distribution_light.png?raw=true "Distribution plot") |
 
 ## How do I install QB Styles?
 
@@ -65,7 +65,7 @@ mpl_style()
 
 ## Can you show me a few examples?
 
-To run the examples in [`example.ipynb`](example.ipynb), install the required packages using ``pip install -r requirements_notebook.txt`` in a Python virtual environment of your choice.
+To run the examples in [`example.ipynb`](https://github.com/quantumblacklabs/qbstyles/blob/master/example.ipynb), install the required packages using ``pip install -r requirements_notebook.txt`` in a Python virtual environment of your choice.
 
 ```python
 import matplotlib.pyplot as plt
@@ -85,17 +85,17 @@ def plot(dark):
 plot(dark=True)
 ```
 
-![png](examples/output_6_0.png?raw=true)
+![png](https://github.com/quantumblacklabs/qbstyles/raw/master/examples/output_6_0.png?raw=true)
 
 ```python
 plot(dark=False)
 ```
 
-![png](examples/output_7_0.png?raw=true)
+![png](https://github.com/quantumblacklabs/qbstyles/raw/master/examples/output_7_0.png?raw=true)
 
 ## How do I create my own styles? 
 
-Have a look at the files [qb-common.mplstyle](qbstyles/styles/qb-common.mplstyle), [qb-dark.mplstyle](qbstyles/styles/qb-dark.mplstyle) and [qb-common.mplstyle](qbstyles/styles/qb-light.mplstyle). They contain many elements that you may want to customise.
+Have a look at the files [qb-common.mplstyle](https://github.com/quantumblacklabs/qbstyles/blob/master/qbstyles/styles/qb-common.mplstyle), [qb-dark.mplstyle](https://github.com/quantumblacklabs/qbstyles/blob/master/qbstyles/styles/qb-dark.mplstyle) and [qb-common.mplstyle](https://github.com/quantumblacklabs/qbstyles/blob/master/qbstyles/styles/qb-light.mplstyle). They contain many elements that you may want to customise.
 
 To do so, create a file similar to the above files at the root of you project, and apply it after the `qbstyle` as follows:
 
@@ -111,4 +111,4 @@ All of `matplotlibrc`'s options can be found [here](https://matplotlib.org/tutor
 
 ## What licence do you use?
 
-QB Styles is licensed under the [Apache 2.0 License](LICENSE).
+QB Styles is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
