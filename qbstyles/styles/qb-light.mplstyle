@@ -20,3 +20,4 @@ legend.edgecolor : 000000D9 # legend edge color (when 'inherit' uses axes.edgeco
 ### FIGURE
 #figure.facecolor : 0.75    # figure facecolor; 0.75 is scalar gray
 figure.facecolor: FFFFFF
+savefig.facecolor: FFFFFF

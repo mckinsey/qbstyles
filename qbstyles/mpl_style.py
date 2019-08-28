@@ -91,7 +91,7 @@ def _monkey_patch_figure(color, Figure):
 
     def _patch(*args, **kwargs):
         fig = Figure(*args, **kwargs)
-        _style_ticks(fig.gca, color)
+        _style_ticks(fig.gca(), color)
         return fig
 
     return _patch
