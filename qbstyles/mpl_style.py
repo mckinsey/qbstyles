@@ -36,6 +36,8 @@ LIGHT_STYLE = "qb-light.mplstyle"
 
 __all__ = ["mpl_style"]
 
+original_subplots = plt.subplots
+original_figure = plt.figure
 
 def mpl_style(dark: bool = True, minor_ticks: bool = True):
     """Some of the tick properties cannot be set using ``plt.style.use``.
@@ -65,10 +67,12 @@ def mpl_style(dark: bool = True, minor_ticks: bool = True):
         for style in [COMMON_STYLE, DARK_STYLE if dark else LIGHT_STYLE]
     )
     color = "FFFFFF" if dark else "000000"
-
     if minor_ticks:
-        plt.subplots = _monkey_patch_subplot(color, plt.subplots)
-        plt.Figure = _monkey_patch_figure(color, plt.Figure)
+        plt.subplots = _monkey_patch_subplot(color, original_subplots)
+        plt.figure = _monkey_patch_figure(color, original_figure)
+    else:
+        plt.subplots = original_subplots
+        plt.figure = original_figure
 
 
 def _style_ticks(axis, color):
@@ -85,12 +89,12 @@ def _style_ticks(axis, color):
         tick.set_color("#" + color + "3D")
 
 
-def _monkey_patch_figure(color, Figure):
+def _monkey_patch_figure(color, figure):
     """ Style a figure's current axis tick marks, just after the figure is
     created. """
 
     def _patch(*args, **kwargs):
-        fig = Figure(*args, **kwargs)
+        fig = figure(*args, **kwargs)
         _style_ticks(fig.gca(), color)
         return fig
 
