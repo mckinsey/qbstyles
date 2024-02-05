@@ -83,7 +83,11 @@ axes.labelpad       : 8.0     # space between label and axis
 #axes.labelweight    : normal  # weight of the x and y labels
 #axes.axisbelow      : False   # whether axis gridlines and ticks are below
                                # the axes elements (lines, text, etc)
-axes.prop_cycle    : cycler('color', ['E31A1C', '33A02C', 'FF7F00', '1F78B4', '6A3D9A', 'FB9A99', 'B2DF8A', 'FDBF6F', 'A6CEE3', 'CAB2D6'])
+axes.prop_cycle    : cycler('color', ['075D58', '332655', '6C1254', '00386E', '875401',
+                                      '0A7C75', '443371', '901870', '004B93', 'B47002',
+                                      '0D9C93', '554083', 'B41E8C', '005EB8', 'E28C03',
+                                      '55B9B3', '8879AF', 'CA61AE', '4C8ECD', 'EAAE4E',
+                                      '9ED7DE', 'BBB2D1', 'E1A5D1', '99BEE2', 'F3D19A'])
                                             # color cycle for plot lines
                                             # as list of string colorspecs:
                                             # single letter, long name, or
