@@ -1,0 +1,35 @@
+---
+title: "Working with SNEE Intelligence Function templates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with SNEE Intelligence Function templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette is a work in progress. Feedback welcome.
+
+### Creating a quarto presentation from SNEE template
+
+There are basic templates stored within the SNEEstyle package which can be used to create documents and presentations.
+
+The \code{SNEEstyle::SNEE_quarto_setup()} function can be used to move them into your project area.
+
+The following code creates a html quarto presentation called "draft1" in the "reports" folder of a project.
+
+```{r plainplot, warning=FALSE, message=FALSE, error=FALSE, eval = FALSE}
+library(SNEEstyle)
+
+SNEE_quarto_setup(type = "presentation", format = "html", file_path = "reports", file_name = "draft1")
+```
+
+This brings across all the files needed to create a SNEE IF themed presentation.
+
+The presentation can then be edited as normal.

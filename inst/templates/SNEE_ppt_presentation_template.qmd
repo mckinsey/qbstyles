@@ -1,0 +1,14 @@
+---
+title: "Suffolk and North East Essex ICS Intelligence Function"
+subtitle: "SNEE presentation template"
+date: today
+date-format: "MMMM YYYY"
+format: 
+  pptx:
+    reference-doc: SNEE_ppt_template.pptx
+editor: source
+execute: 
+  echo: false
+  message: false
+  warning: false
+---

@@ -1,76 +1,129 @@
-# SNEE IF Styles
+# SNEEstyle
 
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Python Version](https://img.shields.io/pypi/pyversions/sneeifstyles.svg)](https://pypi.org/project/sneeifstyles/)
-[![Code Style: Black](https://img.shields.io/badge/code%20style-black-black.svg)](https://github.com/ambv/black)
+An R and python package containing useful functions for implementing SNEE style.
 
-SNEE IF Styles is a python package with a light and a dark [`matplotlib`](https://github.com/matplotlib/matplotlib) style.
+## SNEE colours and palettes
 
-Line plot style | Distribution plot style
-|---------------|----------------------- |
-| ![Line plot](https://github.com/SNEE-ICS/sneeifstyles/blob/master/examples/line_plot.png "Line plot") | ![Distribution plot](https://github.com/SNEE-ICS/sneeifstyles/blob/master/examples/distribution_plot.png "Distribution plot") |
+### Colours
 
-## How do I install SNEE IF Styles?
+-   Neutrals: navy, black, dark_grey, pale_grey, white
 
-`sneeifstyles` is a Python package. To install it, simply run:
+-   Purples: purple, darkpurple1, darkpurple2, lightpurple1, lightpurple2
 
+-   Greens: green, darkgreen1, darkgreen2, lightgreen1, lightgreen2
+
+-   Pinks: pink, darkpink1, darkpink2, lightpink1, lightpink2
+
+-   Blues: blue, darkblue1, darkblue2, lightblue1, lightblue2
+
+-   Yellows: yellow, darkyellow1, darkyellow2, lightyellow1, lightyellow2
+
+### Palettes
+
+-   greens
+-   purples
+-   pinks
+-   blues
+-   yellows
+-   diverge (diverging)
+-   qual (qualitative/categorical)
+
+## R Installation
+
+You can install the R package:
+
+- v2.0.0 directly from Gitea with:
+
+``` r
+remotes::install_git('https://git.apps.axym.co.uk/snee.SNEE_ICS/SNEEstyle', ref = 'v2.0.0', force = TRUE, build_vignettes = TRUE)
+```
+
+-   the latest development version directly from Gitea with
+
+``` r
+remotes::install_git('https://git.apps.axym.co.uk/snee.SNEE_ICS/SNEEstyle', force = TRUE, build_vignettes = TRUE)
+```
+
+-   run `library(SNEEstyle)` to load the functions and make them available in your current R session.
+
+## Using SNEEstyle in R
+
+Below are quick examples of how SNEEstyle can be used.
+
+### Finding SNEE colour codes
+
+-   You can return all SNEE colour codes with:
+
+``` r
+library(SNEEtools)
+
+SNEE_colour()
+```
+
+-   You can return specific colour codes by name with:
+
+``` r
+library(SNEEtools)
+
+SNEE_colour(c("green", "lightgreen2"))
+```
+
+-   You can return colour palette codes by palette name with:
+
+``` r
+library(SNEEtools)
+
+SNEE_colour(palette = "greens")
+```
+
+### Adding SNEE theme to plots
+
+-   You can apply SNEE theme and colours to your plots with:
+
+``` r
+library(ggplot2)
+library(SNEEtools)
+
+ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, colour = Species)) +
+    geom_point() +
+    scale_colour_SNEE("greens") +
+    SNEE_theme()
+```
+
+### Creating a SNEE themed quarto presentation
+
+- You can create a quarto document or presentation based on existing SNEE templates with:
+
+``` r
+libary(SNEEstyle)
+
+SNEE_quarto_setup(type = "presentation", format = "html", "outputs", "draft1")
+```
+
+## Python implementation 
+
+SNEEstylepython is a python package for SNEEstyle [`matplotlib`](https://github.com/matplotlib/matplotlib).
+
+### How do I install SNEEstylepython ?
+
+To install it, simply run:
 
 ```bash
-pip install git+https://github.com/SNEE-ICS/sneeifstyles.git
+pip install git+https://git.apps.axym.co.uk/snee.SNEE_ICS/SNEEstyle
 ```
 
-## How do I use SNEE IF Styles?
+### How do I use SNEEstylepython ?
 
-We are only using the light theme in our SNEE IF styling
-To use the light Matplotlib style theme, you can do the following: 
+To use SNEEstylepython with matplotlib, you can do the following: 
 
 ```python
-from sneeifstyles import mpl_style
-
+from SNEEstylepython import mpl_style
 mpl_style()
 ```
+### Example plots
 
-> ⚠️ For Jupyter Notebooks--> Please make sure you run `from sneeifstyles import mpl_style` and `mpl_style()` in **code cells** as shown above. 
+A detailed guide as to how to run or make edits to examples can be found [here](https://git.apps.axym.co.uk/snee.SNEE_ICS/SNEEstyle/src/branch/main/SNEEstylepython/examples/python_styling_guide.md)
 
-
-## What chart types can use SNEE IF Styles?
-
-- Line plots
-- Scatter plots
-- Bubble plots
-- Bar charts
-- Pie charts
-- Histograms and distribution plots
-- 3D surface plots
-- Stream plots
-- Polar plots
-
-## Can you show me a few examples?
-
-To run the examples in [`example.ipynb`](https://github.com/quantumblacklabs/sneeifstyles/blob/master/example.ipynb), install the required packages using ``pip install -r requirements_notebook.txt`` in a Python virtual environment of your choice.
-
-```python
-import matplotlib.pyplot as plt
-from sneeifstyles import mpl_style
-
-def plot():
-    mpl_style()
-    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
-    
-    # the following functions are defined in example.ipynb 
-    line_plot(axes[0, 0])
-    scatter_plot(axes[0, 1])
-    distribution_plot(axes[1, 0])
-    ax = plt.subplot(2, 2, 4, projection='polar')
-    polar_plot(ax)
-
-plot()
-```
-
-![png](https://github.com/SNEE-ICS/sneeifstyles/blob/master/examples/sample_plots.png)
+![png](https://git.apps.axym.co.uk/snee.SNEE_ICS/SNEEstyle/src/branch/main/SNEEstylepython/examples/sample_plots.png)
 
 All of `matplotlibrc`'s options can be found [here](https://matplotlib.org/tutorials/introductory/customizing.html#a-sample-matplotlibrc-file).
-
-## What license do you use?
-
-QB Styles is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).

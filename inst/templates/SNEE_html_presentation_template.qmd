@@ -1,0 +1,58 @@
+---
+title: "Suffolk and North East Essex ICS Intelligence Function"
+subtitle: "SNEE presentation template"
+date: today
+date-format: "MMMM YYYY"
+format: 
+  revealjs:
+    logo: SNEE_IF_logo.png
+    theme: [default, custom.scss]
+    slide-level: 3
+    slide-number: true
+engine: knitr
+smaller: true
+embed-resources: true
+editor: source
+execute: 
+  echo: false
+  message: false
+  warning: false
+title-slide-attributes: 
+  data-background-color: "#C0CED8"
+  data-background-image: SNEE_IF_background.png
+  data-background-position: left
+  data-background-size: contain
+---
+
+
+### First content slide
+
+Example text content.
+
+- Example bullet point content.
+
+## Section divider {background-color="#C0CED8" background-image="SNEE_IF_background.png" background-position="left" background-size="contain" .divslide-h2-colour}
+
+### Second content slide with plot
+
+```{r example plot}
+
+# Example plot code
+
+library(tidyverse)
+
+ggplot(mtcars, aes(x = mpg, y = cyl)) +
+  geom_point()
+
+```
+
+---
+
+#### Third content slide with smaller header text
+
+The slide-level in the yaml is set to 3 which means that #, ## or ### indicate a new slide. However the text size for these headers can be larger than needed.
+Three hyphens can also be used to indicate a new slide and then you can have smaller sized text for the slide header.
+
+## {background-color="#C0CED8" background-image="SNEE_IF_background.png" background-position="left" background-size="contain"}
+
+![](SNEE_IF_logo.png){fig-align="right" width="600"}

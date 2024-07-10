@@ -1,0 +1,18 @@
+Package: SNEEstyle
+Title: Creates SNEE theme and colours for ggplot
+Version: 2.0.1
+Author: Eilís Keeble <eilis.keeble@suffolk.gov.uk>
+Maintainer: Eilís Keeble <eilis.keeble@suffolk.gov.uk>
+Description: This package provides functions to apply SNEE style to plots made with ggplot.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+  ggplot2,
+  magick,
+  fs
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

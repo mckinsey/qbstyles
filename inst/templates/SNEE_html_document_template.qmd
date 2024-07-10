@@ -1,0 +1,23 @@
+---
+title: "SNEE document template"
+date: today
+date-format: "MMM YYYY"
+format: 
+  html:
+    theme: litera
+    embed-resources: true
+editor: source  
+execute: 
+  echo: false
+  message: false
+  warning: false
+toc: true
+toc-location: left
+number-sections: true
+---
+
+```{r}
+#remotes::install_git('https://git.apps.axym.co.uk/snee.SNEE_ICS/SNEEstyle', ref = 'v2.0.0', force = TRUE, build_vignettes = TRUE)
+library(SNEEstyle)
+SNEE_logo()
+```

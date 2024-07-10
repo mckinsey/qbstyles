@@ -1,0 +1,39 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: Arial, sans-serif !default;
+$presentation-heading-font: Arial, sans-serif !default;
+
+// headings
+$presentation-font-size-root: 40px !default;
+$presentation-heading-color: #064169 !default;
+
+/*-- scss:rules --*/
+
+.reveal .slide-logo {
+  height: 60px !important;
+  width: 235.6769px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
+.reveal .title {
+  font-size: 60px !important;
+  color: #064169;
+  text-align: left;
+}
+
+.reveal .subtitle {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.reveal .date {
+  font-size: 30px;
+  text-align: left;
+}
+
+.divslide-h2-colour h2 {
+  color: #064169 !important;
+}

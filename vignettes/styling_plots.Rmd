@@ -1,0 +1,56 @@
+---
+title: "Styling Plots for SNEE Intelligence Function with SNEEstyle"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Styling Plots for SNEE Intelligence Function with SNEEstyle}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette is a work in progress. Feedback welcome.
+
+### Applying SNEE theme to plots
+
+The below plot demonstrates the basic ggplot formatting. SNEE IF has specific guidelines around how plots should look. It would be cumbersome to apply all these guidelines in each ggplot call and so \code{SNEEstyle::SNEE_theme()} exists.
+
+```{r plainplot, warning=FALSE, message=FALSE, error=FALSE}
+library(SNEEstyle)
+library(ggplot2)
+
+ggplot(iris, aes(Sepal.Width, Sepal.Length, colour = Species)) +
+  geom_point()
+```
+
+\code{SNEE_theme()} can be applied to any plot but it's default settings are best suited to standard plots such as line and bar. More complex plots may require further refinements.
+
+To apply \code{SNEE_theme()} to your plots simply include it as an additional step in ggplot like the below.
+
+```{r SNEEstyle, warning=FALSE, message=FALSE, error=FALSE}
+library(SNEEstyle)
+library(ggplot2)
+
+ggplot(iris, aes(Sepal.Width, Sepal.Length, colour = Species)) +
+  geom_point() +
+  SNEE_theme()
+```
+
+### Adding SNEE colours to plots
+
+\code{SNEE_theme()} changes many aspects of the plot but colours of items in the plot area must be changed separately. \code{SNEEstyle::scale_colour_SNEE} and\code{SNEEstyle::scale_fill_SNEE} exist for this purpose. They call the SNEE colour palettes and apply them to your plot.
+
+```{r SNEEscales, warning=FALSE, message=FALSE, error=FALSE}
+library(SNEEstyle)
+library(ggplot2)
+
+ggplot(iris, aes(Sepal.Width, Sepal.Length, colour = Species)) +
+  geom_point() +
+  scale_colour_SNEE("qual") +
+  SNEE_theme()
+```
