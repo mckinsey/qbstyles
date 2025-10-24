@@ -12,10 +12,18 @@
 # reproduction of this material is strictly forbidden unless prior written
 # permission is obtained from QuantumBlack Visual Analytics Ltd.
 
-"""
-This module contains QB styles for common plotting libraries such as matplotlib.
-"""
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from pathlib import Path
 
-from .mpl_style import mpl_style
+def mpl_style(dark: bool = True, minor_ticks: bool = True) -> None:
+    style_dir = Path(__file__).with_suffix("").parent / "styles"
+    plt.style.use(style_dir / "qb-common.mplstyle")
+    plt.style.use(style_dir / ("qb-dark.mplstyle" if dark else "qb-light.mplstyle"))
+    rc_updates = {
+        "xtick.minor.visible": bool(minor_ticks),
+        "ytick.minor.visible": bool(minor_ticks),
+    }
+    mpl.rcParams.update(rc_updates)
 
-__version__ = "0.1.4"
+__all__ = ["mpl_style"]
