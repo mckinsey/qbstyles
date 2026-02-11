@@ -1,1 +1,3 @@
 include qbstyles/styles/*
+include qbstyles/*.mplstyle
+include requirements.txt

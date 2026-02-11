@@ -25,13 +25,22 @@ with open(path.join(here, name, "__init__.py"), encoding="utf-8") as f:
     version = re.search('__version__ = "([^\']+?)"', f.read()).group(1)
 
 # get the dependencies and installs
-with open("requirements.txt", "r", encoding="utf-8") as f:
-    requires = [x.strip() for x in f if x.strip()]
+
+
 
 # Get the long description from the README file
 with open(path.join(here, "README.md"), encoding="utf-8") as f:
-    readme = f.read()
 
+    readme = f.read()
+from pathlib import Path
+
+req_path = Path(__file__).with_name("requirements.txt")
+install_requires = (
+     [l.strip() for l in req_path.read_text(encoding="utf-8").splitlines()
+     if l.strip() and not l.strip().startswith("#")]
+    if req_path.exists()
+    else ["matplotlib"]
+)
 setup(
     name=name,
     version=version,
@@ -44,7 +53,7 @@ setup(
     python_requires=">=3.5",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=requires,
+    install_requires=install_requires,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",
